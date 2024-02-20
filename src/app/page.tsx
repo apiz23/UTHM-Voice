@@ -1,9 +1,7 @@
-import { H1 } from "@/components/typography";
+import React from 'react'
 
-export default function Home() {
-	return (
-		<main className="flex min-h-screen flex-col items-center justify-between p-24">
-			<H1 text="Hello, World!" />
-		</main>
-	);
+export default function pages() {
+  return (
+    <div>pages</div>
+  )
 }
