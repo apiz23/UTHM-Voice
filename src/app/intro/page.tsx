@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-export default function page() {
+export default function Intro() {
 	const [showCheckbox, setShowCheckbox] = useState<boolean>(false);
 
 	useEffect(() => {
