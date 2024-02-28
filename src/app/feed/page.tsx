@@ -9,7 +9,7 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 import { useEffect, useState } from "react";
-import supabase from "../../../lib/supabase";
+import supabase from "../../lib/supabase/supabase";
 
 interface Message {
 	id: number;
@@ -27,7 +27,7 @@ export default function Feed() {
 					.from<Message>("message")
 					.select("*");
 				setMessages(messagesData);
-			} catch (error) {
+			} catch (error: any) {
 				console.error("Error fetching messages:", error.message);
 			}
 		};

@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
-import supabase from "../../../lib/supabase";
+import supabase from "../../lib/supabase/supabase";
 
 export default function Message() {
 	const [message, setMessage] = useState<string>();
@@ -28,13 +28,13 @@ export default function Message() {
 			}
 
 			console.log("Message inserted successfully:", data);
-		} catch (error) {
+		} catch (error: any) {
 			console.error("Error inserting message:", error.message);
 		}
 	};
 
 	return (
-		<div className="h-screen py-48">
+		<div className="min-h-screen py-48">
 			<div className="max-w-3xl mx-auto">
 				<Card className="border-none shadow-none mx-auto">
 					<CardHeader className="text-center">

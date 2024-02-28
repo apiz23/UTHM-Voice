@@ -33,8 +33,12 @@ export function CommandMenu() {
 			<CommandList>
 				<CommandEmpty>No results found.</CommandEmpty>
 				<CommandGroup heading="Suggestions">
-					<CommandItem>View Feeds</CommandItem>
-					<CommandItem>Send Message</CommandItem>
+					<CommandItem>
+						<Link href="/feed">View Feeds</Link>
+					</CommandItem>
+					<CommandItem>
+						<Link href="/messages">Send Message</Link>
+					</CommandItem>
 					<CommandItem>
 						<Link href="/admin">Login</Link>
 					</CommandItem>
