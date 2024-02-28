@@ -8,6 +8,11 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
+import {
+	ResizableHandle,
+	ResizablePanel,
+	ResizablePanelGroup,
+} from "@/components/ui/resizable";
 import { useEffect, useState } from "react";
 import supabase from "../../lib/supabase/supabase";
 
@@ -37,22 +42,24 @@ export default function Feed() {
 
 	return (
 		<>
-			<div className="min-h-screen grid md:grid-cols-3">
-				<Card className="mx-auto md:w-[800px]">
+			<div className="min-h-screen p-10">
+				<Card className="mx-auto border-none shadow-none">
 					<CardContent className="flex justify-center">
-						<ul className="space-y-4 text-left">
-							<Card className="border-none shadow-none">
+						<div className="col-span-1 border-l border-gray-300">
+							<ul className="space-y-4 text-left p-5">
 								{messages.map((message) => (
-									<li key={message.id}>
-										<CardHeader>
-											<CardTitle>{message.id}</CardTitle>
-											<CardDescription>{message.created_at}</CardDescription>
-										</CardHeader>
-										<CardContent>{message.content}</CardContent>
-									</li>
+									<Card className="bg-black text-white dark:text-black dark:bg-white">
+										<li key={message.id}>
+											<CardHeader>
+												<CardTitle>{message.id}</CardTitle>
+												<CardDescription>{message.created_at}</CardDescription>
+											</CardHeader>
+											<CardContent>{message.content}</CardContent>
+										</li>
+									</Card>
 								))}
-							</Card>
-						</ul>
+							</ul>
+						</div>
 					</CardContent>
 				</Card>
 			</div>
