@@ -8,13 +8,11 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import {
-	ResizableHandle,
-	ResizablePanel,
-	ResizablePanelGroup,
-} from "@/components/ui/resizable";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useEffect, useState } from "react";
 import supabase from "../../lib/supabase/supabase";
+import { MoreHorizontal, HeartIcon } from "lucide-react";
 
 interface Message {
 	id: number;
@@ -40,28 +38,66 @@ export default function Feed() {
 		fetchMessages();
 	}, []);
 
+	const getTimeDifference = (created_at: string): string => {
+		const messageDate = new Date(created_at);
+		const currentDate = new Date();
+
+		if (currentDate.getFullYear() === messageDate.getFullYear()) {
+			return messageDate.toLocaleDateString(undefined, {
+				day: "numeric",
+				month: "short",
+			});
+		} else {
+			return messageDate.toLocaleDateString(undefined, {
+				day: "numeric",
+				month: "short",
+				year: "numeric",
+			});
+		}
+	};
+
 	return (
 		<>
 			<div className="min-h-screen p-10">
-				<Card className="mx-auto border-none shadow-none">
-					<CardContent className="flex justify-center">
-						<div className="col-span-1 border-l border-gray-300">
-							<ul className="space-y-4 text-left p-5">
-								{messages.map((message) => (
-									<Card className="bg-black text-white dark:text-black dark:bg-white">
-										<li key={message.id}>
-											<CardHeader>
-												<CardTitle>{message.id}</CardTitle>
-												<CardDescription>{message.created_at}</CardDescription>
-											</CardHeader>
-											<CardContent>{message.content}</CardContent>
-										</li>
-									</Card>
-								))}
-							</ul>
-						</div>
-					</CardContent>
-				</Card>
+				<ScrollArea className="md:w-2/5 mx-auto rounded-md border">
+					<Card className="mx-auto border-none shadow-none">
+						<CardContent className="md:p-6 p-0 flex justify-center">
+							<div className="col-span-1">
+								<ul className="space-y-4 p-5">
+									{messages.map((message) => (
+										<div className="flex items-start space-x-4">
+											<Avatar className="md:block hidden">
+												<AvatarImage src="https://i.pinimg.com/564x/77/2a/a7/772aa709423494dba2e436c8df1fe643.jpg" />
+												<AvatarFallback>AN</AvatarFallback>
+											</Avatar>
+											<Card className="bg-black w-full md:w-[400px] text-white dark:text-black dark:bg-white">
+												<li key={message.id}>
+													<CardHeader className="md:py-2">
+														<div className="flex">
+															<CardTitle className="me-4">{message.id}</CardTitle>
+															<CardDescription>
+																{getTimeDifference(message.created_at)}
+															</CardDescription>
+														</div>
+													</CardHeader>
+													<CardContent>{message.content}</CardContent>
+													<CardFooter className="grid grid-cols-2 pb-3">
+														<button>
+															<HeartIcon className="mx-auto" />
+														</button>
+														<button>
+															<MoreHorizontal className="mx-auto" />
+														</button>
+													</CardFooter>
+												</li>
+											</Card>
+										</div>
+									))}
+								</ul>
+							</div>
+						</CardContent>
+					</Card>
+				</ScrollArea>
 			</div>
 		</>
 	);
