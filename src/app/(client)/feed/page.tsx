@@ -11,7 +11,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useEffect, useState } from "react";
-import supabase from "../../lib/supabase/supabase";
+import supabase from "../../../lib/supabase/supabase";
 import { MoreHorizontal, HeartIcon } from "lucide-react";
 
 interface Message {

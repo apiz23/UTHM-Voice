@@ -27,7 +27,7 @@ export default function LoginForm() {
 
 	const handleSignIn = async (e: any) => {
 		e.preventDefault();
-		await supabase.auth.signInWithPassword({
+		const test = await supabase.auth.signInWithPassword({
 			email,
 			password,
 		});

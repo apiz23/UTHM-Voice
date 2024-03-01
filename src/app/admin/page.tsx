@@ -9,10 +9,9 @@ import {
 import LoginForm from "./LoginForm";
 
 export default function Admin() {
-	
 	return (
 		<>
-			<div>
+			<div className="flex justify-center items-center h-screen">
 				<Card className="w-[350px]">
 					<CardHeader>
 						<CardTitle>Login</CardTitle>
