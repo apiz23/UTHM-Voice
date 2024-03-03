@@ -1,7 +1,6 @@
 "use client";
 
 import {
-	Command,
 	CommandDialog,
 	CommandEmpty,
 	CommandGroup,
@@ -40,7 +39,7 @@ export function CommandMenu() {
 						<Link href="/messages">Send Message</Link>
 					</CommandItem>
 					<CommandItem>
-						<Link href="/admin">Login</Link>
+						<Link href="/admin/login">Login</Link>
 					</CommandItem>
 				</CommandGroup>
 			</CommandList>

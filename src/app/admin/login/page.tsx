@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import GithubSignInButton from "@/components/GithubSignInButton";
 
 export default function page() {
 	const [data, setData] = useState<{ email: string; password: string }>({
@@ -42,6 +42,7 @@ export default function page() {
 										placeholder="Email"
 										value={data?.email}
 										onChange={handleChange}
+										autoComplete="1"
 									/>
 									<Input
 										type="password"
@@ -53,15 +54,10 @@ export default function page() {
 								</div>
 							</div>
 						</CardContent>
-						<CardFooter className="flex justify-center">
-							<Button type="button">
-								Login
-							</Button>
-							<Button type="button">
-								Sign Up
-							</Button>
-						</CardFooter>
 					</form>
+					<CardFooter className="flex justify-center">
+						<GithubSignInButton />
+					</CardFooter>
 				</Card>
 			</div>
 		</div>
