@@ -10,8 +10,8 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
+import { supabase } from "@/lib/supabase";
 import { useState } from "react";
-import supabase from "../../../lib/supabase/supabase";
 
 export default function Message() {
 	const [message, setMessage] = useState<string>();

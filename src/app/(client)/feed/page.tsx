@@ -11,8 +11,8 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useEffect, useState } from "react";
-import supabase from "../../../lib/supabase/supabase";
 import { MoreHorizontal, HeartIcon } from "lucide-react";
+import supabase from "@/lib/supabase";
 
 interface Message {
 	id: number;
@@ -65,7 +65,7 @@ export default function Feed() {
 							<div className="col-span-1">
 								<ul className="space-y-4 p-5">
 									{messages.map((message) => (
-										<div className="flex items-start space-x-4">
+										<div key={message.id} className="flex items-start space-x-4">
 											<Avatar className="md:block hidden">
 												<AvatarImage src="https://i.pinimg.com/564x/77/2a/a7/772aa709423494dba2e436c8df1fe643.jpg" />
 												<AvatarFallback>AN</AvatarFallback>
