@@ -11,8 +11,12 @@ import {
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import GithubSignInButton from "@/components/GithubSignInButton";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 export default function page() {
+	const { data: session, status } = useSession();
+
 	const [data, setData] = useState<{ email: string; password: string }>({
 		email: "",
 		password: "",
@@ -23,43 +27,46 @@ export default function page() {
 		setData((prev: any) => ({ ...prev, [name]: value }));
 	};
 
-	return (
-		<div>
-			<div className="flex justify-center items-center h-screen">
-				<Card className="w-[350px]">
-					<CardHeader>
-						<CardTitle>Login</CardTitle>
-						<CardDescription>Admin Only</CardDescription>
-					</CardHeader>
+	if (!session) {
+		return (
+			<div>
+				<div className="flex justify-center items-center h-screen">
+					<Card className="w-[350px]">
+						<CardHeader>
+							<CardTitle>Login</CardTitle>
+							<CardDescription>Admin Only</CardDescription>
+						</CardHeader>
 
-					<form>
-						<CardContent>
-							<div className="grid w-full items-center gap-4">
-								<div className="flex flex-col space-y-1.5">
-									<Input
-										type="text"
-										name="email"
-										placeholder="Email"
-										value={data?.email}
-										onChange={handleChange}
-										autoComplete="1"
-									/>
-									<Input
-										type="password"
-										name="password"
-										placeholder="Password"
-										value={data?.password}
-										onChange={handleChange}
-									/>
+						<form>
+							<CardContent>
+								<div className="grid w-full items-center gap-4">
+									<div className="flex flex-col space-y-1.5">
+										<Input
+											type="text"
+											name="email"
+											placeholder="Email"
+											value={data?.email}
+											onChange={handleChange}
+											autoComplete="1"
+										/>
+										<Input
+											type="password"
+											name="password"
+											placeholder="Password"
+											value={data?.password}
+											onChange={handleChange}
+										/>
+									</div>
 								</div>
-							</div>
-						</CardContent>
-					</form>
-					<CardFooter className="flex justify-center">
-						<GithubSignInButton />
-					</CardFooter>
-				</Card>
+							</CardContent>
+						</form>
+						<CardFooter className="flex justify-center">
+							<GithubSignInButton />
+						</CardFooter>
+					</Card>
+				</div>
 			</div>
-		</div>
-	);
+		);
+	}
+	return redirect(`${window.location.origin}/admin/dashboard`);
 }

@@ -28,7 +28,8 @@ export default function Feed() {
 			try {
 				const { data: messagesData, error } = await supabase
 					.from<Message>("message")
-					.select("*");
+					.select("*")
+					.eq("verified", true);
 				setMessages(messagesData);
 			} catch (error: any) {
 				console.error("Error fetching messages:", error.message);

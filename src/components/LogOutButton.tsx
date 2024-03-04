@@ -1,5 +1,6 @@
 import { signOut } from "next-auth/react";
 import { Button } from "./ui/button";
+import { LogOut } from "lucide-react";
 
 export default function LogOutButton() {
 	return (
@@ -8,8 +9,10 @@ export default function LogOutButton() {
 				onClick={() =>
 					signOut({ callbackUrl: `${window.location.origin}/admin/login` })
 				}
+				variant="ghost"
+				className="rounded-lg"
 			>
-				Logout
+				<LogOut className="w-5 h-5" />
 			</Button>
 		</>
 	);

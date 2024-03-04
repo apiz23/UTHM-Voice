@@ -4,10 +4,12 @@ import "../globals.css";
 import SessionWrapper from "@/components/SessionWrapper";
 import { ThemeProvider } from "@/components/theme-provider";
 import { CommandMenu } from "@/components/commandMenu";
+import { NextAuthProvider } from "@/components/NextAuthProvider";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	title: "Login - UTHM Voice",
+	title: "Admin - UTHM Voice",
 	description: "Uthm Voice project",
 };
 
@@ -26,7 +28,7 @@ export default function AdminLayout({
 					disableTransitionOnChange
 				>
 					<CommandMenu />
-					<SessionWrapper>{children}</SessionWrapper>
+					<NextAuthProvider>{children}</NextAuthProvider>
 				</ThemeProvider>
 			</body>
 		</html>
