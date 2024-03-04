@@ -17,11 +17,13 @@ import supabase from "@/lib/supabase";
 import {
 	Dialog,
 	DialogContent,
-	DialogDescription,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
 } from "@/components/ui/dialog";
+import { Switch } from "@/components/ui/switch";
+import { Button } from "@/components/ui/button";
+import { RefreshCw } from "lucide-react";
 
 interface Message {
 	id: number;
@@ -33,31 +35,78 @@ interface Message {
 export default function Dashboard() {
 	const { data: session, status } = useSession();
 	const [messages, setMessages] = useState<Message[]>([]);
+	const [tempData, setTempData] = useState<{ id: number; verified: boolean }[]>(
+		[]
+	);
+	const [isFetching, setIsFetching] = useState(false);
 
 	if (!session && status === "loading") {
 		return redirect(`${window.location.origin}/admin/login`);
 	}
 
-	useEffect(() => {
-		const fetchMessages = async () => {
-			try {
-				const { data: messagesData, error } = await supabase
-					.from<Message>("message")
-					.select("*");
-				console.log(messagesData);
-				setMessages(messagesData);
-			} catch (error: any) {
-				console.error("Error fetching messages:", error.message);
-			}
-		};
+	const fetchMessages = async () => {
+		setIsFetching(true);
+		try {
+			const { data: messagesData, error } = await supabase
+				.from<Message>("message")
+				.select("*");
+			setMessages(messagesData);
+			setTempData(
+				messagesData.map((message) => ({
+					id: message.id,
+					verified: message.verified,
+				}))
+			);
+		} catch (error: any) {
+			console.error("Error fetching messages:", error.message);
+		} finally {
+			setIsFetching(false);
+		}
+	};
 
+	useEffect(() => {
 		fetchMessages();
 	}, []);
+	const handleSwitchChange = (isChecked: boolean, messageId: number) => {
+		setTempData((prevStates) =>
+			prevStates.map((state) =>
+				state.id === messageId ? { ...state, verified: isChecked } : state
+			)
+		);
+	};
+
+	const handleSave = async (id: number) => {
+		const temp = tempData.find((message) => message.id === id);
+		console.log(temp?.verified);
+		if (temp) {
+			try {
+				const { data, error } = await supabase
+					.from("message")
+					.update({ verified: temp?.verified })
+					.eq("id", temp?.id);
+			} catch (error) {
+				console.error(`Error updating message with ID ${id}:`, error.message);
+			}
+		}
+	};
+	const handleRefresh = () => {
+		fetchMessages();
+	};
 	return (
 		<>
 			<NavbarAdmin session={session} />
 			<div className="min-h-screen p-5">
 				<div className="max-w-xl mx-auto">
+					<div className="flex justify-end">
+						<Button
+							onClick={handleRefresh}
+							disabled={isFetching}
+							variant="secondary"
+							className="m-5"
+						>
+							{isFetching ? <RefreshCw className="animate-spin" /> : <RefreshCw />}
+						</Button>
+					</div>
 					<ScrollArea className="rounded-md border">
 						<Table>
 							<TableHeader>
@@ -80,26 +129,40 @@ export default function Dashboard() {
 													<DialogContent>
 														<DialogHeader>
 															<DialogTitle>Details</DialogTitle>
-															{/* <DialogDescription>
-																This action cannot be undone. This will permanently delete your
-																account and remove your data from our servers.
-															</DialogDescription> */}
 														</DialogHeader>
-														<TableRow key={message.id}>
-															<TableCell className="font-medium">{index + 1}</TableCell>
-															<TableCell>{message.content}</TableCell>
-															<TableCell>{message.created_at}</TableCell>
-															<TableCell className="text-right">
-																{message.verified ? "true" : "false"}
-															</TableCell>
-														</TableRow>
+														<div>
+															<TableRow key={message.id}>
+																<TableCell className="font-medium">{message.id}</TableCell>
+																<TableCell>{message.content}</TableCell>
+																<TableCell>{message.created_at}</TableCell>
+																<TableCell className="text-right">
+																	<Switch
+																		checked={
+																			tempData.find((state) => state.id === message.id)
+																				?.verified || false
+																		}
+																		onCheckedChange={(isChecked) =>
+																			handleSwitchChange(isChecked, message.id)
+																		}
+																	/>
+																</TableCell>
+															</TableRow>
+															<Button
+																onClick={() => {
+																	handleSave(message.id);
+																}}
+																variant="outline"
+															>
+																Save
+															</Button>
+														</div>
 													</DialogContent>
 												</Dialog>
 											</TableCell>
 											<TableCell>{message.content}</TableCell>
 											<TableCell>{message.created_at}</TableCell>
 											<TableCell className="text-right">
-												{message.verified ? "true" : "false"}
+												<Switch checked={message.verified} disabled />
 											</TableCell>
 										</TableRow>
 									</>

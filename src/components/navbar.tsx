@@ -14,11 +14,6 @@ import {
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
-} from "@/components/ui/popover";
 import LogOutButton from "./LogOutButton";
 import {
 	Sheet,
@@ -29,6 +24,7 @@ import {
 	SheetTrigger,
 	SheetFooter,
 } from "@/components/ui/sheet";
+import { H1, H3 } from "./typography";
 
 export const Navbar = () => {
 	const { setTheme } = useTheme();
@@ -255,26 +251,6 @@ export const NavbarAdmin = ({ session }: any) => {
 								</DropdownMenuItem>
 							</DropdownMenuContent>
 						</DropdownMenu>
-						{/* <div className="flex justify-end space-x-1">
-							<LogOutButton />
-							<Popover>
-								<PopoverTrigger></PopoverTrigger>
-								<PopoverContent className="absolute right-0 w-56 border border-gray-200 rounded-lg shadow-lg">
-									<div className="p-4">
-										<div className="flex items-center justify-between mb-4">
-											<span className="text-lg font-semibold">{session.user?.name}</span>
-											<Avatar className="w-10 h-10">
-												<AvatarImage src={session.user?.image} alt="icon" />
-												<AvatarFallback>{session.user?.name}</AvatarFallback>
-											</Avatar>
-										</div>
-										<div>
-											<p className="text-sm text-gray-500">{session.user?.email}</p>F
-										</div>
-									</div>
-								</PopoverContent>
-							</Popover>
-						</div> */}
 						<Sheet>
 							<SheetTrigger>
 								<Avatar>
@@ -283,6 +259,9 @@ export const NavbarAdmin = ({ session }: any) => {
 								</Avatar>
 							</SheetTrigger>
 							<SheetContent className="flex flex-col justify-between">
+								<SheetTitle>
+									<H3 text="Profile" />
+								</SheetTitle>
 								<div className="p-4">
 									<div className="flex justify-center items-center mb-5">
 										<Avatar className="w-40 h-40">

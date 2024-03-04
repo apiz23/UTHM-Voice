@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
-import SessionWrapper from "@/components/SessionWrapper";
 import { ThemeProvider } from "@/components/theme-provider";
 import { CommandMenu } from "@/components/commandMenu";
 import { NextAuthProvider } from "@/components/NextAuthProvider";
@@ -11,6 +10,14 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
 	title: "Admin - UTHM Voice",
 	description: "Uthm Voice project",
+	icons: {
+		icon: [
+			{
+				url: "/logo.png",
+				href: "/logo.png",
+			},
+		],
+	},
 };
 
 export default function AdminLayout({

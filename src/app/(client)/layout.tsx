@@ -10,6 +10,14 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
 	title: "UTHM Voice",
 	description: "Uthm Voice project",
+	icons: {
+		icon: [
+			{
+				url: "/logo.png",
+				href: "/logo.png",
+			},
+		],
+	},
 };
 
 export default function RootLayout({
