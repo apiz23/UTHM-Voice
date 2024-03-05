@@ -24,6 +24,7 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { RefreshCw } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
 
 interface Message {
 	id: number;
@@ -131,11 +132,11 @@ export default function Dashboard() {
 															<DialogTitle>Details</DialogTitle>
 														</DialogHeader>
 														<div>
-															<TableRow key={message.id}>
-																<TableCell className="font-medium">{message.id}</TableCell>
-																<TableCell>{message.content}</TableCell>
-																<TableCell>{message.created_at}</TableCell>
-																<TableCell className="text-right">
+															<div key={message.id}>
+																<p className="font-medium">{message.id}</p>
+																<Textarea readOnly>{message.content}</Textarea>
+																<p>{message.created_at}</p>
+																<div className="text-right">
 																	<Switch
 																		checked={
 																			tempData.find((state) => state.id === message.id)
@@ -145,8 +146,8 @@ export default function Dashboard() {
 																			handleSwitchChange(isChecked, message.id)
 																		}
 																	/>
-																</TableCell>
-															</TableRow>
+																</div>
+															</div>
 															<Button
 																onClick={() => {
 																	handleSave(message.id);

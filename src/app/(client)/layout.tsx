@@ -13,8 +13,8 @@ export const metadata: Metadata = {
 	icons: {
 		icon: [
 			{
-				url: "/logo.png",
-				href: "/logo.png",
+				url: "/logo1.png",
+				href: "/logo1.png",
 			},
 		],
 	},
@@ -36,7 +36,7 @@ export default function RootLayout({
 				>
 					<CommandMenu />
 					<Navbar />
-					{children}
+					<div className="bg-gray-200 dark:bg-gray-800">{children}</div>
 				</ThemeProvider>
 			</body>
 		</html>

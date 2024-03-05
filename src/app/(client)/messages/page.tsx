@@ -10,7 +10,7 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import { supabase } from "@/lib/supabase";
+import supabase from "@/lib/supabase";
 import { useState } from "react";
 
 export default function Message() {
@@ -34,9 +34,9 @@ export default function Message() {
 	};
 
 	return (
-		<div className="min-h-screen py-48">
+		<div className="min-h-screen py-44">
 			<div className="max-w-3xl mx-auto">
-				<Card className="border-none shadow-none mx-auto">
+				<Card className="border-none shadow-none mx-auto px-14 py-8">
 					<CardHeader className="text-center">
 						<CardTitle>
 							<H1 text="UTHM Voice" />

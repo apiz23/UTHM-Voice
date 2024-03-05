@@ -66,12 +66,12 @@ export default function Feed() {
 							<div className="col-span-1">
 								<ul className="space-y-4 p-5">
 									{messages.map((message) => (
-										<div key={message.id} className="flex items-start space-x-4">
-											<Avatar className="md:block hidden">
+										<div key={message.id} className="flex items-start">
+											<Avatar className="md:block hidden me-5">
 												<AvatarImage src="https://i.pinimg.com/564x/77/2a/a7/772aa709423494dba2e436c8df1fe643.jpg" />
 												<AvatarFallback>AN</AvatarFallback>
 											</Avatar>
-											<Card className="bg-black w-full md:w-[400px] text-white dark:text-black dark:bg-white">
+											<Card className="bg-black w-full md:w-[400px] min-w-[200px] text-white dark:text-black dark:bg-white">
 												<li key={message.id}>
 													<CardHeader className="md:py-2">
 														<div className="flex">
