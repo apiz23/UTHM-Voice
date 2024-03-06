@@ -4,6 +4,7 @@ import "../globals.css";
 import { CommandMenu } from "@/components/commandMenu";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,9 +35,12 @@ export default function RootLayout({
 					enableSystem
 					disableTransitionOnChange
 				>
+					<Toaster richColors />
 					<CommandMenu />
 					<Navbar />
-					<div className="bg-gray-200 dark:bg-gray-800 p-4 sm:ml-72">{children}</div>
+					<div className="bg-gray-100 dark:bg-gray-400 p-4 min-h-screen sm:ml-72 h-screen overflow-hidden">
+						{children}
+					</div>
 				</ThemeProvider>
 			</body>
 		</html>
