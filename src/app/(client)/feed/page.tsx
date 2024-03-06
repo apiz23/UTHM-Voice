@@ -59,45 +59,41 @@ export default function Feed() {
 
 	return (
 		<>
-			<div className="min-h-screen p-10">
-				<ScrollArea className="md:w-2/5 mx-auto rounded-md border">
-					<Card className="mx-auto border-none shadow-none">
-						<CardContent className="md:p-6 p-0 flex justify-center">
-							<div className="col-span-1">
-								<ul className="space-y-4 p-5">
-									{messages.map((message) => (
-										<div key={message.id} className="flex items-start">
-											<Avatar className="md:block hidden me-5">
-												<AvatarImage src="https://i.pinimg.com/564x/77/2a/a7/772aa709423494dba2e436c8df1fe643.jpg" />
-												<AvatarFallback>AN</AvatarFallback>
-											</Avatar>
-											<Card className="bg-black w-full md:w-[400px] min-w-[200px] text-white dark:text-black dark:bg-white">
-												<li key={message.id}>
-													<CardHeader className="md:py-2">
-														<div className="flex">
-															<CardTitle className="me-4">{message.id}</CardTitle>
-															<CardDescription>
-																{getTimeDifference(message.created_at)}
-															</CardDescription>
-														</div>
-													</CardHeader>
-													<CardContent>{message.content}</CardContent>
-													<CardFooter className="grid grid-cols-2 pb-3">
-														<button>
-															<HeartIcon className="mx-auto" />
-														</button>
-														<button>
-															<MoreHorizontal className="mx-auto" />
-														</button>
-													</CardFooter>
-												</li>
-											</Card>
-										</div>
-									))}
-								</ul>
-							</div>
-						</CardContent>
-					</Card>
+			<div className="min-h-screen">
+				<ScrollArea className="md:w-2/5 mx-auto rounded-md">
+					<div className="col-span-1">
+						<ul className="space-y-4 p-5">
+							{messages.map((message) => (
+								<div key={message.id}>
+									<Card className="bg-black md:w-full min-w-[200px] text-white dark:text-black dark:bg-white py-5">
+										<li key={message.id}>
+											<CardHeader className="md:py-2">
+												<div className="flex my-3">
+													<Avatar className="me-5">
+														<AvatarImage src="https://i.pinimg.com/564x/77/2a/a7/772aa709423494dba2e436c8df1fe643.jpg" />
+														<AvatarFallback>AN</AvatarFallback>
+													</Avatar>
+													<CardTitle className="me-4">{message.id}</CardTitle>
+													<CardDescription>
+														{getTimeDifference(message.created_at)}
+													</CardDescription>
+												</div>
+											</CardHeader>
+											<CardContent>{message.content}</CardContent>
+											<CardFooter className="flex justify-between pb-3">
+												<button className="mx-auto">
+													<HeartIcon />
+												</button>
+												<button className="mx-auto">
+													<MoreHorizontal />
+												</button>
+											</CardFooter>
+										</li>
+									</Card>
+								</div>
+							))}
+						</ul>
+					</div>
 				</ScrollArea>
 			</div>
 		</>

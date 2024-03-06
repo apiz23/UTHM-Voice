@@ -36,7 +36,7 @@ export default function RootLayout({
 				>
 					<CommandMenu />
 					<Navbar />
-					<div className="bg-gray-200 dark:bg-gray-800">{children}</div>
+					<div className="bg-gray-200 dark:bg-gray-800 p-4 sm:ml-72">{children}</div>
 				</ThemeProvider>
 			</body>
 		</html>
