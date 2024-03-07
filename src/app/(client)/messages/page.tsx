@@ -13,18 +13,35 @@ import { Textarea } from "@/components/ui/textarea";
 import supabase from "@/lib/supabase";
 import { useState } from "react";
 import { toast } from "sonner";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
+import { SelectValueProps } from "@radix-ui/react-select";
+import { InfoIcon } from "lucide-react";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export default function Message() {
 	const [message, setMessage] = useState<string>();
+	const [category, setCategory] = useState<number>();
+
 	const handleMessage = async () => {
-		if (!message) {
-			toast.error("Please enter a message");
+		if (!message && !category) {
+			toast.error("Please fill all the inputs");
 			return;
 		}
 		try {
 			const { data, error } = await supabase
 				.from("message")
-				.insert([{ content: message }])
+				.insert([{ content: message, category: category }])
 				.select();
 
 			if (error) {
@@ -62,6 +79,34 @@ export default function Message() {
 						</CardHeader>
 						<CardContent className="flex justify-center">
 							<div className="grid w-full max-w-sm items-center gap-1.5">
+								<div className="flex mx-auto mb-5">
+									<Select
+										onValueChange={(value: SelectValueProps) => {
+											setCategory(Number(value));
+										}}
+									>
+										<SelectTrigger className="w-[200px]">
+											<SelectValue placeholder="Category" />
+										</SelectTrigger>
+										<SelectContent>
+											<SelectItem value="0">FSKTM</SelectItem>
+											<SelectItem value="1">PPD</SelectItem>
+											<SelectItem value="2">FTK</SelectItem>
+										</SelectContent>
+									</Select>
+									<div className="ms-5 rounded-full bg-black p-2">
+										<TooltipProvider>
+											<Tooltip>
+												<TooltipTrigger>
+													<InfoIcon className="w-5 h-5" />
+												</TooltipTrigger>
+												<TooltipContent>
+													<p>Add to library</p>
+												</TooltipContent>
+											</Tooltip>
+										</TooltipProvider>
+									</div>
+								</div>
 								<Textarea
 									placeholder="Type your message here."
 									id="message"
