@@ -5,7 +5,6 @@ import { CommandMenu } from "@/components/commandMenu";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
 import { Toaster } from "sonner";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -38,7 +37,12 @@ export default function RootLayout({
 					<Toaster richColors />
 					<CommandMenu />
 					<Navbar />
-					<div className="bg-gray-100 dark:bg-gray-400 p-4 min-h-screen sm:ml-72 h-screen overflow-hidden">
+					<div
+						className="bg-white dark:bg-black p-4 min-h-screen sm:ml-72 h-fit bg-no-repeat bg-cover bg-fixed"
+						style={{
+							backgroundImage: "url('/bg2.svg')",
+						}}
+					>
 						{children}
 					</div>
 				</ThemeProvider>

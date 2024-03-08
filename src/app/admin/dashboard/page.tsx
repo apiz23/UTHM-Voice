@@ -25,6 +25,7 @@ import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { RefreshCw } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
+import { H2 } from "@/components/typography";
 
 interface Message {
 	id: number;
@@ -129,13 +130,18 @@ export default function Dashboard() {
 													</DialogTrigger>
 													<DialogContent>
 														<DialogHeader>
-															<DialogTitle>Details</DialogTitle>
+															<DialogTitle>
+																<H2 text="Details" />
+															</DialogTitle>
 														</DialogHeader>
 														<div>
 															<div key={message.id}>
-																<p className="font-medium">{message.id}</p>
-																<Textarea readOnly>{message.content}</Textarea>
-																<p>{message.created_at}</p>
+																<label className="font-medium">
+																	Id: {message.id} Created: {message.created_at}
+																</label>
+																<Textarea disabled className="my-5">
+																	{message.content}
+																</Textarea>
 																<div className="text-right">
 																	<Switch
 																		checked={
@@ -147,15 +153,15 @@ export default function Dashboard() {
 																		}
 																	/>
 																</div>
+																<Button
+																	onClick={() => {
+																		handleSave(message.id);
+																	}}
+																	variant="outline"
+																>
+																	Save
+																</Button>
 															</div>
-															<Button
-																onClick={() => {
-																	handleSave(message.id);
-																}}
-																variant="outline"
-															>
-																Save
-															</Button>
 														</div>
 													</DialogContent>
 												</Dialog>

@@ -68,7 +68,7 @@ export default function Message() {
 		<>
 			<div className="min-h-screen py-44">
 				<div className="max-w-3xl mx-auto">
-					<Card className="border-none shadow-none mx-auto py-4 px-7 md:px-14 md:py-8">
+					<Card className="mx-auto py-4 px-7 md:px-14 md:py-8 bg-zinc-300 dark:bg-zinc-900">
 						<CardHeader className="text-center">
 							<CardTitle>
 								<H1 text="UTHM Voice" />
@@ -94,14 +94,14 @@ export default function Message() {
 											<SelectItem value="2">FTK</SelectItem>
 										</SelectContent>
 									</Select>
-									<div className="ms-5 rounded-full bg-black p-2">
+									<div className="ms-5 rounded-full p-2">
 										<TooltipProvider>
 											<Tooltip>
 												<TooltipTrigger>
 													<InfoIcon className="w-5 h-5" />
 												</TooltipTrigger>
 												<TooltipContent>
-													<p>Add to library</p>
+													<p>Faculty that you want to target lol</p>
 												</TooltipContent>
 											</Tooltip>
 										</TooltipProvider>

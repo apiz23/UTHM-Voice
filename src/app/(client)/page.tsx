@@ -17,7 +17,7 @@ export default function Intro() {
 
 	return (
 		<>
-			<div className="min-h-screen flex justify-center items-center">
+			{/* <div className="min-h-screen flex justify-center items-center">
 				<div>
 					<TypeAnimation
 						sequence={["UTHM Voice", 100]}
@@ -41,6 +41,11 @@ export default function Intro() {
 						</div>
 					)}
 				</div>
+			</div> */}
+			<div className="max-w-2xl mx-auto pt-72">
+				<h1 className="text-balance bg-gradient-to-tr from-black/70 via-black to-black/60 bg-clip-text text-center text-5xl md:text-7xl font-bold text-transparent dark:from-zinc-400/10 dark:via-white/90 dark:to-white/20 animate-pulse">
+					UTHM VOICE
+				</h1>
 			</div>
 		</>
 	);
