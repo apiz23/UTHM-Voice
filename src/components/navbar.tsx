@@ -136,8 +136,14 @@ export const Navbar = () => {
 					</button>
 				</div>
 			</div>
-			<aside className="fixed top-0 left-0 z-40 w-72 h-screen transition-transform -translate-x-full sm:translate-x-0 md:block hidden shadow-md">
-				<div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+
+			<aside className="fixed top-0 left-0 z-40 w-72 h-screen transition-transform -translate-x-full sm:translate-x-0 md:block hidden shadow-md shadow-gray-500">
+				<div
+					className="h-full px-3 py-4 overflow-y-auto bg-white dark:bg-black bg-no-repeat bg-center bg-contain"
+					style={{
+						backgroundImage: "url('/aside.svg')",
+					}}
+				>
 					<Link
 						href="/"
 						className="flex items-center space-x-3 rtl:space-x-reverse px-3 my-5"
