@@ -40,7 +40,7 @@ export default function RootLayout({
 					<div
 						className="bg-white dark:bg-black p-4 min-h-screen sm:ml-72 h-fit bg-no-repeat bg-cover bg-fixed"
 						style={{
-							backgroundImage: "url('/bg2.svg')",
+							backgroundImage: "url('/bg3.svg')",
 						}}
 					>
 						{children}
