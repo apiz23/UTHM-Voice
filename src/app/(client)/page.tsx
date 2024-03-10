@@ -4,6 +4,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Cursor from "@/components/Cursor";
 
 export default function Intro() {
 	const [showCheckbox, setShowCheckbox] = useState<boolean>(false);
@@ -17,6 +18,7 @@ export default function Intro() {
 
 	return (
 		<>
+			<Cursor />
 			{/* <div className="min-h-screen flex justify-center items-center">
 				<div>
 					<TypeAnimation
