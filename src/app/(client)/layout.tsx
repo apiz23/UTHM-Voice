@@ -14,8 +14,8 @@ export const metadata: Metadata = {
 	icons: {
 		icon: [
 			{
-				url: "/logo1.png",
-				href: "/logo1.png",
+				url: "/icon.png",
+				href: "/icon.png",
 			},
 		],
 	},
@@ -40,7 +40,7 @@ export default function RootLayout({
 					<CommandMenu />
 					<Navbar />
 					<div
-						className="bg-white dark:bg-black p-4 min-h-screen sm:ml-72 h-fit bg-no-repeat bg-cover bg-fixed"
+						className="bg-white dark:bg-black p-4 min-h-screen sm:ml-72 h-screen bg-cover bg-fixed"
 						style={{
 							backgroundImage: "url('/bg3.svg')",
 						}}
