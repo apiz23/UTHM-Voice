@@ -2,17 +2,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { opacity, slideUp } from "./anim";
-
-const words = [
-	"Hello",
-	"Bonjour",
-	"Ciao",
-	"Olà",
-	"やあ",
-	"Hallå",
-	"Guten tag",
-	"Hallo",
-];
+import { TypeAnimation } from "react-type-animation";
 
 export default function Preloader() {
 	const [dimension, setDimension] = useState({ width: 0, height: 0 });
@@ -46,7 +36,7 @@ export default function Preloader() {
 			variants={slideUp}
 			initial="initial"
 			exit="exit"
-			className="fixed inset-0 flex items-center justify-center z-50 bg-black"
+			className="fixed inset-0 flex items-center justify-center z-50 bg-white dark:bg-black"
 		>
 			{dimension.width > 0 && (
 				<>
@@ -56,7 +46,13 @@ export default function Preloader() {
 						animate="enter"
 						className="text-white text-6xl flex items-center relative z-10"
 					>
-						Hafiz
+						<TypeAnimation
+							sequence={["Welcome", 500]}
+							wrapper="span"
+							speed={25}
+							style={{ fontSize: "2em", display: "inline-block" }}
+							repeat={Infinity}
+						/>
 					</motion.p>
 					<svg
 						className="absolute top-0 w-full"

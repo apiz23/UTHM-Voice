@@ -31,10 +31,10 @@ export default function Cursor() {
 	return (
 		<div className="fixed">
 			<motion.div
+				className="bg-black dark:bg-white"
 				style={{
 					width: cursorSize,
 					height: cursorSize,
-					backgroundColor: "white",
 					borderRadius: "50%",
 					pointerEvents: "none",
 					position: "absolute",
