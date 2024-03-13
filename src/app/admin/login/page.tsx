@@ -17,14 +17,11 @@ import { redirect } from "next/navigation";
 export default function Page() {
 	const { data: session, status } = useSession();
 
-	const [data, setData] = useState<{ email: string; password: string }>({
-		email: "",
-		password: "",
-	});
+	const [data, setData] = useState({ email: "", password: "" });
 
 	const handleChange = (e: any) => {
-		const { name, value } = e.target.value;
-		setData((prev: any) => ({ ...prev, [name]: value }));
+		const { name, value } = e.target;
+		setData((prev) => ({ ...prev, [name]: value }));
 	};
 
 	if (!session) {
@@ -45,7 +42,7 @@ export default function Page() {
 											type="text"
 											name="email"
 											placeholder="Email"
-											value={data?.email}
+											value={data.email}
 											onChange={handleChange}
 											autoComplete="1"
 										/>
@@ -53,7 +50,7 @@ export default function Page() {
 											type="password"
 											name="password"
 											placeholder="Password"
-											value={data?.password}
+											value={data.password}
 											onChange={handleChange}
 										/>
 									</div>
