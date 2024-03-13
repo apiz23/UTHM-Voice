@@ -26,8 +26,7 @@ export default function Cursor() {
 		return () => {
 			window.removeEventListener("mousemove", manageMouseMove);
 		};
-	}, []);
-
+	}, [manageMouseMove]);
 	return (
 		<div className="fixed">
 			<motion.div
