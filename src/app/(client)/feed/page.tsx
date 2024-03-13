@@ -92,7 +92,7 @@ export default function Feed() {
 					</div>
 				</div>
 			</div>
-			<ScrollArea className="w-full md:w-2/5 h-[700px] mx-auto shadow-2xl rounded-lg py-5">
+			<ScrollArea className="w-full md:w-2/5 h-[700px] mx-auto shadow-2xl rounded-lg py-5 bg-zinc-100 dark:bg-zinc-800">
 				<div className="col-span-1">
 					<ul className="space-y-4 p-5">
 						{messages.map((message) => (
