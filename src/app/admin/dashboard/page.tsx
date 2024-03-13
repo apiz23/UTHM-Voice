@@ -42,10 +42,6 @@ export default function Dashboard() {
 	);
 	const [isFetching, setIsFetching] = useState(false);
 
-	if (!session && status === "loading") {
-		return redirect(`${window.location.origin}/admin/login`);
-	}
-
 	const fetchMessages = async () => {
 		setIsFetching(true);
 		try {
@@ -67,8 +63,13 @@ export default function Dashboard() {
 	};
 
 	useEffect(() => {
+		if (!session && status === "loading") {
+			return redirect(`${window.location.origin}/admin/login`);
+		}
+
 		fetchMessages();
-	}, []);
+	}, [session, status]);
+
 	const handleSwitchChange = (isChecked: boolean, messageId: number) => {
 		setTempData((prevStates) =>
 			prevStates.map((state) =>
