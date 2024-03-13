@@ -10,9 +10,8 @@ gsap.registerPlugin(ScrollTrigger);
 export default function About() {
 	useEffect(() => {
 		(async () => {
-			// @ts-ignore
-			const LocomotiveScroll = (await import("locomotive-scroll")).default;
-			const locomotiveScroll = new LocomotiveScroll();
+			//const LocomotiveScroll = (await import("locomotive-scroll")).default;
+			//const locomotiveScroll = new LocomotiveScroll();
 
 			setTimeout(() => {
 				document.body.style.cursor = "default";
