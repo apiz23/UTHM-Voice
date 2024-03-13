@@ -51,12 +51,10 @@ export default function About() {
 
 	return (
 		<>
-			<div className="section2 min-h-screen">
-				<Landing />
-			</div>
-			<div className="section1 min-h-screen mt-10">
+			<div className="section2 min-h-screen">{/* <Landing /> */}</div>
+			{/* <div className="section1 min-h-screen mt-10">
 				<div className="px-8 py-5 h-fit pt-40">
-					<div className="bg-zinc-200 dark:bg-zinc-50 dark:bg-opacity-30 bg-opacity-40 rounded-md py-5 px-20 flex justify-between items-center">
+					<div className="py-5 px-20 flex justify-between items-center">
 						<img
 							src="/next-js.svg"
 							alt="next js"
@@ -74,7 +72,7 @@ export default function About() {
 						/>
 					</div>
 				</div>
-			</div>
+			</div> */}
 		</>
 	);
 }

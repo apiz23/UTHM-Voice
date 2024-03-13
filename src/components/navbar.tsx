@@ -55,7 +55,7 @@ export const Navbar = () => {
 			icon: <MessageSquareText className="me-5" />,
 		},
 		{ label: "Message", path: "/messages", icon: <Send className="me-5" /> },
-		{ label: "About", path: "/about", icon: <Info className="me-5" /> },
+		// { label: "About", path: "/about", icon: <Info className="me-5" /> },
 	];
 
 	return (
