@@ -80,7 +80,7 @@ export default function Message() {
 						<div className="grid w-full max-w-sm items-center gap-1.5">
 							<div className="flex mx-auto mb-5">
 								<Select
-									onValueChange={(value: SelectValueProps) => {
+									onValueChange={(value: string) => {
 										setCategory(Number(value));
 									}}
 								>
