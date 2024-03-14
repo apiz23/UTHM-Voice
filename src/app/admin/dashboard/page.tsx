@@ -92,7 +92,7 @@ export default function Dashboard() {
 					.from("message")
 					.update({ verified: temp?.verified })
 					.eq("id", temp?.id);
-			} catch (error) {
+			} catch (error: any) {
 				console.error(`Error updating message with ID ${id}:`, error.message);
 			}
 		}
