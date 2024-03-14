@@ -46,9 +46,9 @@ export default function Dashboard() {
 		setIsFetching(true);
 		try {
 			const { data: messagesData, error } = await supabase
-				.from<Message>("message")
+				.from("message")
 				.select("*");
-			setMessages(messagesData);
+			setMessages(messagesData || []);
 			setTempData(
 				messagesData.map((message) => ({
 					id: message.id,
