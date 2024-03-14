@@ -46,15 +46,20 @@ export default function Dashboard() {
 		setIsFetching(true);
 		try {
 			const { data: messagesData, error } = await supabase
-				.from<Message>("message")
+				.from("message")
 				.select("*");
-			setMessages(messagesData);
-			setTempData(
-				messagesData.map((message) => ({
-					id: message.id,
-					verified: message.verified,
-				}))
-			);
+			if (messagesData) {
+				setMessages(messagesData);
+				setTempData(
+					messagesData.map((message) => ({
+						id: message.id,
+						verified: message.verified,
+					}))
+				);
+			} else {
+				setMessages([]);
+				setTempData([]);
+			}
 		} catch (error: any) {
 			console.error("Error fetching messages:", error.message);
 		} finally {
