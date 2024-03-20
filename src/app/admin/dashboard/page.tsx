@@ -25,6 +25,7 @@ import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { RefreshCw } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
+import { H2 } from "@/components/typography";
 
 interface Message {
 	id: number;
@@ -41,23 +42,24 @@ export default function Dashboard() {
 	);
 	const [isFetching, setIsFetching] = useState(false);
 
-	if (!session && status === "loading") {
-		return redirect(`${window.location.origin}/admin/login`);
-	}
-
 	const fetchMessages = async () => {
 		setIsFetching(true);
 		try {
 			const { data: messagesData, error } = await supabase
-				.from<Message>("message")
+				.from("message")
 				.select("*");
-			setMessages(messagesData);
-			setTempData(
-				messagesData.map((message) => ({
-					id: message.id,
-					verified: message.verified,
-				}))
-			);
+			if (messagesData) {
+				setMessages(messagesData);
+				setTempData(
+					messagesData.map((message) => ({
+						id: message.id,
+						verified: message.verified,
+					}))
+				);
+			} else {
+				setMessages([]);
+				setTempData([]);
+			}
 		} catch (error: any) {
 			console.error("Error fetching messages:", error.message);
 		} finally {
@@ -66,8 +68,13 @@ export default function Dashboard() {
 	};
 
 	useEffect(() => {
+		if (!session && status === "loading") {
+			return redirect(`${window.location.origin}/admin/login`);
+		}
+
 		fetchMessages();
-	}, []);
+	}, [session, status]);
+
 	const handleSwitchChange = (isChecked: boolean, messageId: number) => {
 		setTempData((prevStates) =>
 			prevStates.map((state) =>
@@ -85,7 +92,7 @@ export default function Dashboard() {
 					.from("message")
 					.update({ verified: temp?.verified })
 					.eq("id", temp?.id);
-			} catch (error) {
+			} catch (error: any) {
 				console.error(`Error updating message with ID ${id}:`, error.message);
 			}
 		}
@@ -129,13 +136,18 @@ export default function Dashboard() {
 													</DialogTrigger>
 													<DialogContent>
 														<DialogHeader>
-															<DialogTitle>Details</DialogTitle>
+															<DialogTitle>
+																<H2 text="Details" />
+															</DialogTitle>
 														</DialogHeader>
 														<div>
 															<div key={message.id}>
-																<p className="font-medium">{message.id}</p>
-																<Textarea readOnly>{message.content}</Textarea>
-																<p>{message.created_at}</p>
+																<label className="font-medium">
+																	Id: {message.id} Created: {message.created_at}
+																</label>
+																<Textarea disabled className="my-5">
+																	{message.content}
+																</Textarea>
 																<div className="text-right">
 																	<Switch
 																		checked={
@@ -147,15 +159,15 @@ export default function Dashboard() {
 																		}
 																	/>
 																</div>
+																<Button
+																	onClick={() => {
+																		handleSave(message.id);
+																	}}
+																	variant="outline"
+																>
+																	Save
+																</Button>
 															</div>
-															<Button
-																onClick={() => {
-																	handleSave(message.id);
-																}}
-																variant="outline"
-															>
-																Save
-															</Button>
 														</div>
 													</DialogContent>
 												</Dialog>

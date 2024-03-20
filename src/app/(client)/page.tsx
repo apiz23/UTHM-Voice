@@ -3,21 +3,34 @@ import { TypeAnimation } from "react-type-animation";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { AnimatePresence } from "framer-motion";
+import Preloader from "@/components/Preloader";
 
 export default function Intro() {
-	const [showCheckbox, setShowCheckbox] = useState<boolean>(false);
+	// const [showCheckbox, setShowCheckbox] = useState<boolean>(false);
+
+	// useEffect(() => {
+	// 	const timeout = setTimeout(() => {
+	// 		setShowCheckbox(true);
+	// 	}, 1200);
+	// 	return () => clearTimeout(timeout);
+	// }, []);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		const timeout = setTimeout(() => {
-			setShowCheckbox(true);
-		}, 1200);
-		return () => clearTimeout(timeout);
+		(async () => {
+
+			setTimeout(() => {
+				setIsLoading(false);
+				document.body.style.cursor = "default";
+				window.scrollTo(0, 0);
+			}, 2000);
+		})();
 	}, []);
 
 	return (
 		<>
-			<div className="min-h-screen flex justify-center items-center">
+			{/* <div className="min-h-screen flex justify-center items-center">
 				<div>
 					<TypeAnimation
 						sequence={["UTHM Voice", 100]}
@@ -41,7 +54,15 @@ export default function Intro() {
 						</div>
 					)}
 				</div>
-			</div>
+			</div> */}
+			<main className="min-h-screen">
+				<AnimatePresence mode="wait">{isLoading && <Preloader />}</AnimatePresence>
+				<div className="max-w-2xl mx-auto pt-72">
+					<h1 className="text-balance bg-gradient-to-tr from-black/70 via-black to-black/60 bg-clip-text text-center text-5xl md:text-7xl font-bold text-transparent dark:from-zinc-400/10 dark:via-white/90 dark:to-white/20 animate-pulse">
+						UTHM VOICE
+					</h1>
+				</div>
+			</main>
 		</>
 	);
 }

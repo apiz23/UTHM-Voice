@@ -13,6 +13,7 @@ model message {
   content    String?
   created_at DateTime? @default(now()) @db.Timestamp(6)
   verified   Boolean?  @default(false)
+  category   Int       @default(0)
 }
 
 model Account {

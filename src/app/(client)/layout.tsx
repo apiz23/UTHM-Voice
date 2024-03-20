@@ -4,7 +4,8 @@ import "../globals.css";
 import { CommandMenu } from "@/components/commandMenu";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
-
+import { Toaster } from "sonner";
+import Cursor from "@/components/Cursor";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -13,8 +14,8 @@ export const metadata: Metadata = {
 	icons: {
 		icon: [
 			{
-				url: "/logo1.png",
-				href: "/logo1.png",
+				url: "/icon.png",
+				href: "/icon.png",
 			},
 		],
 	},
@@ -28,15 +29,24 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={inter.className}>
+				<Cursor />
 				<ThemeProvider
 					attribute="class"
 					defaultTheme="system"
 					enableSystem
 					disableTransitionOnChange
 				>
+					<Toaster richColors />
 					<CommandMenu />
 					<Navbar />
-					<div className="bg-gray-200 dark:bg-gray-800">{children}</div>
+					<div
+						className="bg-white dark:bg-black p-4 min-h-screen sm:ml-72 h-screen bg-cover bg-fixed"
+						style={{
+							backgroundImage: "url('/bg3.svg')",
+						}}
+					>
+						{children}
+					</div>
 				</ThemeProvider>
 			</body>
 		</html>
