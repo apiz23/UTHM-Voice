@@ -182,7 +182,7 @@ export const Navbar = () => {
 								<Link
 									href={item.path}
 									className={`flex py-2 px-3 mb-5 rounded hover:bg-transparent border-0 md:p-0 ${
-										pathname === item.path ? "text-purple-400" : "text-white"
+										pathname === item.path ? "text-purple-400" : ""
 									}`}
 								>
 									{item.icon}
