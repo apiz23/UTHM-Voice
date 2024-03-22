@@ -308,8 +308,8 @@ export const NavbarAdmin = ({ session }: any) => {
 						<Sheet>
 							<SheetTrigger>
 								<Avatar>
-									<AvatarImage src={session.user?.image} alt="icon" sizes="icon" />
-									<AvatarFallback>{session.user?.name}</AvatarFallback>
+									<AvatarImage src={session?.user?.image} alt="icon" sizes="icon" />
+									<AvatarFallback>{session?.user?.name}</AvatarFallback>
 								</Avatar>
 							</SheetTrigger>
 							<SheetContent className="flex flex-col justify-between">
@@ -319,14 +319,14 @@ export const NavbarAdmin = ({ session }: any) => {
 								<div className="p-4">
 									<div className="flex justify-center items-center mb-5">
 										<Avatar className="w-40 h-40">
-											<AvatarImage src={session.user?.image} alt="icon" />
-											<AvatarFallback>{session.user?.name}</AvatarFallback>
+											<AvatarImage src={session?.user?.image} alt="icon" />
+											<AvatarFallback>{session?.user?.name}</AvatarFallback>
 										</Avatar>
 									</div>
 									<div className="flex items-center justify-between mb-4">
 										<div>
-											<p className="text-lg font-semibold">{session.user?.name}</p>
-											<span className="text-sm text-gray-500">{session.user?.email}</span>
+											<p className="text-lg font-semibold">{session?.user?.name}</p>
+											<span className="text-sm text-gray-500">{session?.user?.email}</span>
 										</div>
 									</div>
 								</div>
