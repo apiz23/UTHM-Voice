@@ -44,13 +44,13 @@ export default function Preloader() {
 						variants={opacity}
 						initial="initial"
 						animate="enter"
-						className="text-white text-6xl flex items-center relative z-10"
+						className="text-white text-4xl md:text-6xl flex items-center relative z-10"
+						style={{ fontSize: "2em", display: "inline-block" }}
 					>
 						<TypeAnimation
 							sequence={["Welcome", 500]}
 							wrapper="span"
 							speed={25}
-							style={{ fontSize: "2em", display: "inline-block" }}
 							repeat={Infinity}
 						/>
 					</motion.p>
@@ -62,7 +62,7 @@ export default function Preloader() {
 							variants={curve}
 							initial="initial"
 							exit="exit"
-							fill="#18181b"
+							fill="#27272a"
 						></motion.path>
 					</svg>
 				</>

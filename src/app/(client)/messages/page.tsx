@@ -64,6 +64,14 @@ export default function Message() {
 		}
 	};
 
+	const categories = [
+		{ id: 0, label: "FSKTM" },
+		{ id: 1, label: "PPD" },
+		{ id: 2, label: "FTK" },
+		{ id: 3, label: "FKEE" },
+		{ id: 4, label: "FPTV" },
+	];
+
 	return (
 		<>
 			<div className="max-w-3xl mx-auto my-44">
@@ -88,9 +96,11 @@ export default function Message() {
 										<SelectValue placeholder="Category" />
 									</SelectTrigger>
 									<SelectContent>
-										<SelectItem value="0">FSKTM</SelectItem>
-										<SelectItem value="1">PPD</SelectItem>
-										<SelectItem value="2">FTK</SelectItem>
+										{categories.map((category) => (
+											<SelectItem key={category.id} value={String(category.id)}>
+												{category.label}
+											</SelectItem>
+										))}
 									</SelectContent>
 								</Select>
 								<div className="ms-5 rounded-full p-2">
@@ -106,13 +116,16 @@ export default function Message() {
 									</TooltipProvider>
 								</div>
 							</div>
-							<Textarea
-								placeholder="Type your message here."
-								id="message"
-								value={message}
-								onChange={(e) => setMessage(e.target.value)}
-								required
-							/>
+							<div className="flex justify-center">
+								<Textarea
+									placeholder="Type your message here."
+									id="message"
+									value={message}
+									onChange={(e) => setMessage(e.target.value)}
+									required
+									className="w-full md:w-100vh"
+								/>
+							</div>
 						</div>
 					</CardContent>
 					<CardFooter className="flex justify-center">
