@@ -70,6 +70,10 @@ export default function Message() {
 		{ id: 2, label: "FTK" },
 		{ id: 3, label: "FKEE" },
 		{ id: 4, label: "FPTV" },
+		{ id: 5, label: "FAST" },
+		{ id: 6, label: "FKAAB" },
+		{ id: 7, label: "FKMP" },
+		{ id: 4, label: "FPTP" },
 	];
 
 	return (
