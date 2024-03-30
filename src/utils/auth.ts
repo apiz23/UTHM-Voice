@@ -7,13 +7,13 @@ import GitHub from "next-auth/providers/github";
 
 export const authOptions = {
 	adapter: PrismaAdapter(prisma),
-	providers: [GitHub],
-	// providers: [
-	// 	GitHubProvider({
-	// 		clientId: process.env.AUTH_GITHUB_ID as string,
-	// 		clientSecret: process.env.AUTH_GITHUB_SECRET as string,
-	// 	}),
-	// ],
+	// providers: [GitHub],
+	providers: [
+		GitHubProvider({
+			clientId: process.env.AUTH_GITHUB_ID as string,
+			clientSecret: process.env.AUTH_GITHUB_SECRET as string,
+		}),
+	],
 	session: {
 		strategy: "jwt",
 	},
