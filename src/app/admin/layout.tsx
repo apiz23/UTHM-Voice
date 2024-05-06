@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "../globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { CommandMenu } from "@/components/commandMenu";
-import { NextAuthProvider } from "@/components/NextAuthProvider";
+import SessionWrapper from "@/components/SessionWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,7 +35,7 @@ export default function AdminLayout({
 					disableTransitionOnChange
 				>
 					<CommandMenu />
-					<NextAuthProvider>{children}</NextAuthProvider>
+					<SessionWrapper>{children}</SessionWrapper>
 				</ThemeProvider>
 			</body>
 		</html>
